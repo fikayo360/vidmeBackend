@@ -35,12 +35,12 @@ app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const id = (0, uuid_1.v4)();
     const { email, username, password } = req.body;
     try {
-        const user = yield sequelize.User.create({
-            id,
-            email,
-            username,
-            password
-        });
+        // const user = await sequelize.User.create({
+        //   id,
+        //   email,
+        //   username,
+        //   password
+        // });
         res.status(200).json('created');
     }
     catch (err) {
