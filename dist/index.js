@@ -21,7 +21,7 @@ const { Sequelize } = require('sequelize');
 const uuid_1 = require("uuid");
 app.use(cors());
 app.use(express_1.default.json());
-const userR = require('./models/User');
+const { User } = require('./models/User');
 const port = process.env.PORT || 5000;
 const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAUDmS@dpg-cjmm2usdfrcc73a8hbs0-a.oregon-postgres.render.com/vidme', {
     dialect: 'postgres',
@@ -37,7 +37,7 @@ app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const { email, username, password, profile_pic, resettoken } = req.body;
     let user;
     try {
-        user = userR.create({
+        user = User.create({
             id,
             email,
             username,
