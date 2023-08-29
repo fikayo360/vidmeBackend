@@ -26,6 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// import { number } from 'joi';
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const nodemailer = __importStar(require("nodemailer"));
 function generateToken(email, expiresIn) {

@@ -1,7 +1,7 @@
-import { number } from 'joi';
+// import { number } from 'joi';
 import jwt, { Secret } from 'jsonwebtoken';
 import * as nodemailer from 'nodemailer';
-import Usermodel from '../models/userModel';
+// import Usermodel from '../models/userModel';
 
 interface JwtPayload {
     email: string
