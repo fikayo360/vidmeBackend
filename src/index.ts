@@ -32,8 +32,8 @@ app.post('/users', async (req: Request, res: Response) => {
     });
   
     res.status(200).json('created');
-  }catch(err){
-    console.log('error occured');
+  }catch(err:any){
+    console.log(err.response.data);
   }
 
 });

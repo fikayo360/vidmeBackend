@@ -44,7 +44,7 @@ app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(200).json('created');
     }
     catch (err) {
-        console.log('error occured');
+        console.log(err.response.data);
     }
 }));
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
