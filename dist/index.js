@@ -34,13 +34,18 @@ const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAU
 app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = (0, uuid_1.v4)();
     const { email, username, password } = req.body;
-    const user = yield sequelize.User.create({
-        id,
-        email,
-        username,
-        password
-    });
-    res.json(user);
+    try {
+        const user = yield sequelize.User.create({
+            id,
+            email,
+            username,
+            password
+        });
+        res.status(200).json('created');
+    }
+    catch (err) {
+        console.log('error occured');
+    }
 }));
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
