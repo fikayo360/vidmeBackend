@@ -7,6 +7,7 @@ const { Sequelize } = require('sequelize')
 import { v4 as uuidv4 } from 'uuid';
 app.use(cors());
 app.use(express.json());
+const userR = require('./models/User')
 
 const port = process.env.PORT || 5000;
 
@@ -25,7 +26,7 @@ app.post('/users', async (req: Request, res: Response) => {
   const {email,username,password,profile_pic,resettoken} = req.body
   let user;
   try{
-    user = await sequelize.User.create({
+    user = userR.create({
       id,
       email,
       username,
