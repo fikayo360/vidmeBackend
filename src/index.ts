@@ -22,15 +22,17 @@ const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAU
 
 app.post('/users', async (req: Request, res: Response) => {
   const id = uuidv4();
-  const {email,username,password} = req.body
+  const {email,username,password,profile_pic,resettoken} = req.body
   try{
-    // const user = await sequelize.User.create({
-    //   id,
-    //   email,
-    //   username,
-    //   password
-    // });
-  
+    const user = await sequelize.User.create({
+      id,
+      email,
+      username,
+      password,
+      profile_pic,
+      resettoken
+    });
+    console.log(user);
     res.status(200).json('created');
   }catch(err:any){
     console.log(err.response.data);
