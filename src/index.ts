@@ -43,7 +43,7 @@ app.post('/users', async (req: Request, res: Response) => {
   const {email,name} = req.body
   let user;
   try{
-    user = await newU.create({
+    user =  newU.create({
       id,
       name,
       email,
@@ -53,7 +53,7 @@ app.post('/users', async (req: Request, res: Response) => {
       // resettoken
     });
     console.log(user);
-    res.status(200).json(user);
+    res.status(200).json('created');
   }catch(err:any){
     console.log(err.response.data);
   }

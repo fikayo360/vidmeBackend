@@ -53,7 +53,7 @@ app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const { email, name } = req.body;
     let user;
     try {
-        user = yield newU.create({
+        user = newU.create({
             id,
             name,
             email,
@@ -63,7 +63,7 @@ app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             // resettoken
         });
         console.log(user);
-        res.status(200).json(user);
+        res.status(200).json('created');
     }
     catch (err) {
         console.log(err.response.data);
