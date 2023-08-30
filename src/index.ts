@@ -23,7 +23,7 @@ const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAU
 
 const newU = sequelize.define("users", {
   id: {
-    type: Sequelize.UUID,
+    type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
@@ -39,8 +39,8 @@ const newU = sequelize.define("users", {
 });
 
 app.post('/users', async (req: Request, res: Response) => {
-  const id = uuidv4();
-  const { email, name } = req.body;
+ 
+  const {id, email, name } = req.body;
 
    newU.create({id:id, name:name, email:email }).catch ((err:any) => {
     console.log(err)

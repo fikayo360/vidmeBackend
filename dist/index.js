@@ -18,7 +18,6 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const cors = require('cors');
 const { Sequelize } = require('sequelize');
-const uuid_1 = require("uuid");
 app.use(cors());
 app.use(express_1.default.json());
 const { User } = require('./models/User');
@@ -34,7 +33,7 @@ const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAU
 });
 const newU = sequelize.define("users", {
     id: {
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
@@ -49,8 +48,7 @@ const newU = sequelize.define("users", {
     }
 });
 app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = (0, uuid_1.v4)();
-    const { email, name } = req.body;
+    const { id, email, name } = req.body;
     newU.create({ id: id, name: name, email: email }).catch((err) => {
         console.log(err);
     });
