@@ -34,7 +34,7 @@ const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAU
 });
 const newU = sequelize.define("users", {
     id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         primaryKey: true,
         autoIncrement: true,
     },
