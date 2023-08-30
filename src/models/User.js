@@ -1,5 +1,6 @@
+const { Sequelize, DataTypes } = require('sequelize');
+const DataTypes = require("sequelize/lib/data-types");
 
-module.exports = (sequelize,DataTypes) => {
     const User = sequelize.define('User', {
         id: {
           type: DataTypes.UUID,
@@ -35,5 +36,4 @@ module.exports = (sequelize,DataTypes) => {
         },
       });
 
-return User
-}
+      console.log(User === sequelize.models.User);

@@ -32,18 +32,35 @@ const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAU
         }
     }
 });
+const newU = sequelize.define("users", {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+    },
+});
 app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = (0, uuid_1.v4)();
-    const { email, username, password, profile_pic, resettoken } = req.body;
+    const { email, name } = req.body;
     let user;
     try {
-        user = sequelize.User.create({
+        user = newU.create({
             id,
+            name,
             email,
-            username,
-            password,
-            profile_pic,
-            resettoken
+            // username,
+            // password,
+            // profile_pic,
+            // resettoken
         });
         console.log(user);
         res.status(200).json('created');
