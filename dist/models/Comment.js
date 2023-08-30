@@ -1,6 +1,6 @@
-const {sequelizee} = require('../../postgresconfig')
-
-  const Like = sequelizee.define('Like', {
+"use strict";
+const { sequelizeeC } = require('../../postgresconfig');
+const Comments = sequelizeeC.define('Comment', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
@@ -16,8 +16,10 @@ const {sequelizee} = require('../../postgresconfig')
     userId: {
         type: DataTypes.STRING(255),
         allowNull: false
+    },
+    comment: {
+        type: DataTypes.STRING(255),
+        allowNull: false
     }
-})
-
-
-module.exports = {Like}
+});
+module.exports = { Comments };

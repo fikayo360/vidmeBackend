@@ -1,6 +1,7 @@
+const { DataTypes } = require('sequelize');
 const {sequelizee} = require('../../postgresconfig')
 
-    const Userr = sequelizee.define('User', {
+    const User = sequelizee.define('User', {
         id: {
           type: DataTypes.UUID,
           primaryKey: true,
@@ -24,15 +25,7 @@ const {sequelizee} = require('../../postgresconfig')
         },
         resettoken: {
           type: DataTypes.STRING(255),
-        },
-        created_at: {
-          type: DataTypes.TIMESTAMPWITHTIMEZONE,
-          defaultValue: sequelizee.NOW,
-        },
-        updated_at: {
-          type: DataTypes.TIMESTAMPWITHTIMEZONE,
-          defaultValue: sequelizee.NOW,
-        },
+        }
       });
 
-      module.exports = {Userr}
+      module.exports = {User}

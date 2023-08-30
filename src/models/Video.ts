@@ -1,6 +1,7 @@
-const {sequelizee} = require('../../postgresconfig')
+const {viddb} = require('../../postgresconfig')
+const { DataTypesV } = require('sequelize');
 
-    const Video = sequelizee.define('Video',{
+    const Video = viddb.define('Video',{
         id: {
           type: DataTypes.UUID,
           primaryKey: true,
@@ -19,7 +20,7 @@ const {sequelizee} = require('../../postgresconfig')
             allowNull: true
         },
         publishedAt: {
-            type: Sequelize.DATE,
+            type:  DataTypesV.DATE,
             allowNull: false
         },
         channelId: {

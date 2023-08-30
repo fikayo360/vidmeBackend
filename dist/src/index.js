@@ -20,7 +20,7 @@ const cors = require('cors');
 app.use(cors());
 app.use(express_1.default.json());
 const { sequelizee } = require('../postgresconfig');
-const { Userr } = require('../src/models/User.ts');
+const { Userr } = require('../src/models/User');
 const port = process.env.PORT || 5000;
 const uuid_1 = require("uuid");
 app.post('/user', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
