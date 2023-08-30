@@ -43,7 +43,7 @@ app.post('/users', async (req: Request, res: Response) => {
   const { email, name } = req.body;
 
   try {
-    const user = await User.create({ name:name, email:email })
+    const user = await User.create({id:id, name:name, email:email })
     return res.status(200).json('created');
   } catch (err:any) {
     res.status(400).json(err.response.data);
