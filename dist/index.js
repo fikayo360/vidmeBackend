@@ -17,58 +17,34 @@ const app = (0, express_1.default)();
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const cors = require('cors');
-const { Sequelize } = require('sequelize');
 app.use(cors());
 app.use(express_1.default.json());
+const { sequelizee } = require('./postgresconfig');
+const { Userr } = require('./src/models/User');
 const port = process.env.PORT || 5000;
-const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAUDmS@dpg-cjmm2usdfrcc73a8hbs0-a.oregon-postgres.render.com/vidme', {
-    dialect: 'postgres',
-    protocol: 'postgres',
-    dialectOptions: {
-        ssl: {
-            require: 'true'
-        }
-    }
-});
-const newU = sequelize.define("users", {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-    }
-});
-app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, email, name } = req.body;
-    newU.create({ id: id, name: name, email: email }).catch((err) => {
-        console.log(err);
+const uuid_1 = require("uuid");
+app.post('/user', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = (0, uuid_1.v4)();
+    const { email, username, password } = req.body;
+    const user = yield Userr.create({
+        id, email, username, password
     });
-    res.status(200).json('created');
+    res.status(200).json(user);
+    console.log('hi');
 }));
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         app.listen(port, () => console.log(`Server is listening on port ${port}...`));
-        const isSynced = yield sequelize.sync({ force: false });
+        const isSynced = yield sequelizee.sync({ force: false });
         if (isSynced) {
             console.log('The models are created successfully.');
         }
         else {
             console.log('The models could not be created.');
         }
-        yield sequelize.authenticate();
-        console.log('Connection has been established successfully.');
     }
     catch (error) {
         console.log(error);
     }
 });
 start();
-module.exports = { sequelize };

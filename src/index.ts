@@ -10,16 +10,15 @@ const {Userr} = require('./src/models/User')
 const port = process.env.PORT || 5000;
 import { v4 as uuidv4 } from 'uuid';
 
-app.get('/user', async (req: Request, res: Response) => {
-//     const id = uuidv4();
-//   const { email, username,password } = req.body;
+app.post('/user', async (req: Request, res: Response) => {
+    const id = uuidv4();
+  const { email, username,password } = req.body;
 
-//   const user = await Userr.create({
-//     id,email,username,password
-//   });
-//   res.status(200).json(user)
-//   console.log('hi');
-res.send('hello world')
+  const user = await Userr.create({
+    id,email,username,password
+  });
+  res.status(200).json(user)
+  console.log('hi');
 });
 
 const start =  async() => {
