@@ -17,7 +17,7 @@ app.post('/users', async (req: Request, res: Response) => {
   const user = await Userr.create({
     id,email,username,password
   });
-  res.status(200).json('created')
+  res.status(200).json(user)
   console.log(user);
 });
 
