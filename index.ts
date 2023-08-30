@@ -18,7 +18,7 @@ app.post('/users', async (req: Request, res: Response) => {
     id,email,username,password
   });
   res.status(200).json(user)
-  console.log(user);
+  console.log('hi');
 });
 
 const start =  async() => {
