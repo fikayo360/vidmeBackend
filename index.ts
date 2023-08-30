@@ -11,14 +11,15 @@ const port = process.env.PORT || 5000;
 import { v4 as uuidv4 } from 'uuid';
 
 app.post('/users', async (req: Request, res: Response) => {
-    const id = uuidv4();
-  const { email, username,password } = req.body;
+//     const id = uuidv4();
+//   const { email, username,password } = req.body;
 
-  const user = await Userr.create({
-    id,email,username,password
-  });
-  res.status(200).json(user)
-  console.log('hi');
+//   const user = await Userr.create({
+//     id,email,username,password
+//   });
+//   res.status(200).json(user)
+//   console.log('hi');
+console.log('hi');
 });
 
 const start =  async() => {
