@@ -1,7 +1,6 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const DataTypes = require("sequelize/lib/data-types");
+const {sequelizee} = require('../../postgresconfig')
 
-    const User = sequelize.define('User', {
+    const User = sequelizee.define('User', {
         id: {
           type: DataTypes.UUID,
           primaryKey: true,
@@ -36,4 +35,4 @@ const DataTypes = require("sequelize/lib/data-types");
         },
       });
 
-      console.log(User === sequelize.models.User);
+      module.exports = {User}

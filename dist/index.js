@@ -20,7 +20,6 @@ const cors = require('cors');
 const { Sequelize } = require('sequelize');
 app.use(cors());
 app.use(express_1.default.json());
-const { User } = require('./models/User');
 const port = process.env.PORT || 5000;
 const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAUDmS@dpg-cjmm2usdfrcc73a8hbs0-a.oregon-postgres.render.com/vidme', {
     dialect: 'postgres',
@@ -72,3 +71,4 @@ const start = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 start();
+module.exports = { sequelize };

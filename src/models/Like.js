@@ -1,5 +1,6 @@
-module.exports = (sequelize,DataTypes) => {
-  const Like = sequelize.define('Like', {
+const {sequelizee} = require('../../postgresconfig')
+
+  const Like = sequelizee.define('Like', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
@@ -26,6 +27,5 @@ module.exports = (sequelize,DataTypes) => {
     }
 })
 
-return Like
 
-}
+module.exports = {Like}

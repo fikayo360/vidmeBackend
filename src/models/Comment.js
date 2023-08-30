@@ -1,5 +1,6 @@
-module.exports = (sequelize,DataTypes) => {
-    const Comment = sequelize.define('Comment', {
+const {sequelizee} = require('../../postgresconfig')
+
+    const Comment = sequelizee.define('Comment', {
       id: {
           type: DataTypes.UUID,
           primaryKey: true,
@@ -30,5 +31,4 @@ module.exports = (sequelize,DataTypes) => {
       }
   });
 
-  return Comment
-}
+  module.exports = {Comment}

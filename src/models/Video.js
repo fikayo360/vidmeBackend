@@ -1,5 +1,6 @@
-module.exports = (sequelize,DataTypes) => {
-    const Video = sequelize.define('Video',{
+const {sequelizee} = require('../../postgresconfig')
+
+    const Video = sequelizee.define('Video',{
         id: {
           type: DataTypes.UUID,
           primaryKey: true,
@@ -42,6 +43,5 @@ module.exports = (sequelize,DataTypes) => {
         defaultValue: sequelize.NOW,
       }
     })
-    return Video
-
-}
+    
+    module.exports = {Video}
