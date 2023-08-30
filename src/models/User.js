@@ -1,6 +1,6 @@
 const {sequelizee} = require('../../postgresconfig')
 
-    const User = sequelizee.define('User', {
+    const Userr = sequelizee.define('User', {
         id: {
           type: DataTypes.UUID,
           primaryKey: true,
@@ -35,4 +35,4 @@ const {sequelizee} = require('../../postgresconfig')
         },
       });
 
-      module.exports = {User}
+      module.exports = {Userr}
