@@ -51,22 +51,17 @@ const newU = sequelize.define("users", {
 app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = (0, uuid_1.v4)();
     const { email, name } = req.body;
-    let user;
+    const user = new newU({
+        id,
+        name,
+        email,
+    });
     try {
-        user = newU.create({
-            id,
-            name,
-            email,
-            // username,
-            // password,
-            // profile_pic,
-            // resettoken
-        });
-        console.log(user);
+        yield user.save();
         res.status(200).json('created');
     }
     catch (err) {
-        console.log(err.response.data);
+        res.status(400).json(err.response.data);
     }
 }));
 const start = () => __awaiter(void 0, void 0, void 0, function* () {

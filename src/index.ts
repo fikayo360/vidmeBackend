@@ -40,24 +40,20 @@ const newU = sequelize.define("users", {
 
 app.post('/users', async (req: Request, res: Response) => {
   const id = uuidv4();
-  const {email,name} = req.body
-  let user;
-  try{
-    user =  newU.create({
-      id,
-      name,
-      email,
-      // username,
-      // password,
-      // profile_pic,
-      // resettoken
-    });
-    console.log(user);
-    res.status(200).json('created');
-  }catch(err:any){
-    console.log(err.response.data);
-  }
+  const { email, name } = req.body;
 
+  const user = new newU({
+    id,
+    name,
+    email,
+  });
+
+  try {
+    await user.save();
+    res.status(200).json('created');
+  } catch (err:any) {
+    res.status(400).json(err.response.data);
+  }
 });
 
 const start =  async() => {
