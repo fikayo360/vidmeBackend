@@ -10,7 +10,7 @@ const {Userr} = require('./src/models/User')
 const port = process.env.PORT || 5000;
 import { v4 as uuidv4 } from 'uuid';
 
-app.post('/users', async (req: Request, res: Response) => {
+app.post('/user', async (req: Request, res: Response) => {
 //     const id = uuidv4();
 //   const { email, username,password } = req.body;
 
