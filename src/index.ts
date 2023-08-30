@@ -7,6 +7,7 @@ const { Sequelize } = require('sequelize')
 import { v4 as uuidv4 } from 'uuid';
 app.use(cors());
 app.use(express.json());
+const DataTypes = require("sequelize/lib/data-types");
 const {User} = require('./models/User')
 
 const port = process.env.PORT || 5000;
@@ -37,11 +38,11 @@ const newU = sequelize.define("users", {
     unique: true,
   },
   created_at: {
-    type: Sequelize.TIMESTAMPWITHTIMEZONE,
+    type: DataTypes.TIMESTAMPWITHTIMEZONE,
     defaultValue: sequelize.NOW,
   },
   updated_at: {
-    type: Sequelize.TIMESTAMPWITHTIMEZONE,
+    type: DataTypes.TIMESTAMPWITHTIMEZONE,
     defaultValue: sequelize.NOW,
   }
 });

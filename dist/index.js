@@ -21,6 +21,7 @@ const { Sequelize } = require('sequelize');
 const uuid_1 = require("uuid");
 app.use(cors());
 app.use(express_1.default.json());
+const DataTypes = require("sequelize/lib/data-types");
 const { User } = require('./models/User');
 const port = process.env.PORT || 5000;
 const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAUDmS@dpg-cjmm2usdfrcc73a8hbs0-a.oregon-postgres.render.com/vidme', {
@@ -48,11 +49,11 @@ const newU = sequelize.define("users", {
         unique: true,
     },
     created_at: {
-        type: Sequelize.TIMESTAMPWITHTIMEZONE,
+        type: DataTypes.TIMESTAMPWITHTIMEZONE,
         defaultValue: sequelize.NOW,
     },
     updated_at: {
-        type: Sequelize.TIMESTAMPWITHTIMEZONE,
+        type: DataTypes.TIMESTAMPWITHTIMEZONE,
         defaultValue: sequelize.NOW,
     }
 });
