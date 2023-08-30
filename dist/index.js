@@ -51,14 +51,9 @@ const newU = sequelize.define("users", {
 app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = (0, uuid_1.v4)();
     const { email, name } = req.body;
-    const user = new newU({
-        id,
-        name,
-        email,
-    });
     try {
-        yield user.save();
-        res.status(200).json('created');
+        const user = yield User.create({ name: name, email: email });
+        return res.status(200).json('created');
     }
     catch (err) {
         res.status(400).json(err.response.data);
@@ -70,7 +65,6 @@ const start = () => __awaiter(void 0, void 0, void 0, function* () {
         const isSynced = yield sequelize.sync({ force: false });
         if (isSynced) {
             console.log('The models are created successfully.');
-            console.log(`user model ${sequelize.User}`);
         }
         else {
             console.log('The models could not be created.');

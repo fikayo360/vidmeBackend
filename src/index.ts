@@ -42,15 +42,9 @@ app.post('/users', async (req: Request, res: Response) => {
   const id = uuidv4();
   const { email, name } = req.body;
 
-  const user = new newU({
-    id,
-    name,
-    email,
-  });
-
   try {
-    await user.save();
-    res.status(200).json('created');
+    const user = await User.create({ name:name, email:email })
+    return res.status(200).json('created');
   } catch (err:any) {
     res.status(400).json(err.response.data);
   }
@@ -65,7 +59,6 @@ const start =  async() => {
 
     if (isSynced) {
       console.log('The models are created successfully.');
-      console.log(`user model ${sequelize.User}`);
     } else {
       console.log('The models could not be created.');
     }
