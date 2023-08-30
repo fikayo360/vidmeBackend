@@ -36,14 +36,6 @@ const newU = sequelize.define("users", {
     type: Sequelize.STRING,
     allowNull: false,
     unique: true,
-  },
-  created_at: {
-    type: DataTypes.TIMESTAMPWITHTIMEZONE,
-    defaultValue: sequelize.NOW,
-  },
-  updated_at: {
-    type: DataTypes.TIMESTAMPWITHTIMEZONE,
-    defaultValue: sequelize.NOW,
   }
 });
 

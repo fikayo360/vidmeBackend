@@ -47,14 +47,6 @@ const newU = sequelize.define("users", {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
-    },
-    created_at: {
-        type: DataTypes.TIMESTAMPWITHTIMEZONE,
-        defaultValue: sequelize.NOW,
-    },
-    updated_at: {
-        type: DataTypes.TIMESTAMPWITHTIMEZONE,
-        defaultValue: sequelize.NOW,
     }
 });
 app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
