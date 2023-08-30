@@ -42,7 +42,7 @@ app.post('/users', async (req: Request, res: Response) => {
   const id = uuidv4();
   const { email, name } = req.body;
 
-   User.create({id:id, name:name, email:email }).catch ((err:any) => {
+   newU.create({id:id, name:name, email:email }).catch ((err:any) => {
     console.log(err)
    })
   res.status(200).json('created')
