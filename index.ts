@@ -12,10 +12,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 app.post('/users', async (req: Request, res: Response) => {
     const id = uuidv4();
-  const { email, name } = req.body;
+  const { email, username,password } = req.body;
 
   const user = await User.create({
-    id,name,email
+    id,email,username,password
   });
   res.status(200).json('created')
   console.log(user);

@@ -24,15 +24,7 @@ const {sequelizee} = require('../../postgresconfig')
         },
         resettoken: {
           type: DataTypes.STRING(255),
-        },
-        created_at: {
-          type: DataTypes.TIMESTAMPWITHTIMEZONE,
-          defaultValue: sequelize.NOW,
-        },
-        updated_at: {
-          type: DataTypes.TIMESTAMPWITHTIMEZONE,
-          defaultValue: sequelize.NOW,
-        },
+        }
       });
 
       module.exports = {User}
