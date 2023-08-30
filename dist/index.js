@@ -52,8 +52,8 @@ app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const id = (0, uuid_1.v4)();
     const { email, name } = req.body;
     try {
-        const user = yield User.create({ id: id, name: name, email: email });
-        return res.status(200).json('created');
+        const user = User.create({ id: id, name: name, email: email });
+        res.status(200).json('created');
     }
     catch (err) {
         res.status(400).json(err.response.data);
