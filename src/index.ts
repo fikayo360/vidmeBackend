@@ -36,15 +36,32 @@ const newU = sequelize.define("users", {
     allowNull: false,
     unique: true,
   },
+  created_at: {
+    type: Sequelize.TIMESTAMPWITHTIMEZONE,
+    defaultValue: sequelize.NOW,
+  },
+  updated_at: {
+    type: Sequelize.TIMESTAMPWITHTIMEZONE,
+    defaultValue: sequelize.NOW,
+  }
 });
 
 app.post('/users', async (req: Request, res: Response) => {
   const id = uuidv4();
   const { email, name } = req.body;
 
-   newU.create({id:id, name:name, email:email }).catch ((err:any) => {
-    console.log(err)
-   })
+  const user = new newU({
+    id,
+    name,
+    email,
+  });
+
+  try {
+    await user.save();
+    res.status(200).json('created');
+  } catch (err:any) {
+    res.status(400).json(err.response.data);
+  }
   res.status(200).json('created')
 });
 

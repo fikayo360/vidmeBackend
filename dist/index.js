@@ -47,13 +47,30 @@ const newU = sequelize.define("users", {
         allowNull: false,
         unique: true,
     },
+    created_at: {
+        type: Sequelize.TIMESTAMPWITHTIMEZONE,
+        defaultValue: sequelize.NOW,
+    },
+    updated_at: {
+        type: Sequelize.TIMESTAMPWITHTIMEZONE,
+        defaultValue: sequelize.NOW,
+    }
 });
 app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = (0, uuid_1.v4)();
     const { email, name } = req.body;
-    newU.create({ id: id, name: name, email: email }).catch((err) => {
-        console.log(err);
+    const user = new newU({
+        id,
+        name,
+        email,
     });
+    try {
+        yield user.save();
+        res.status(200).json('created');
+    }
+    catch (err) {
+        res.status(400).json(err.response.data);
+    }
     res.status(200).json('created');
 }));
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
