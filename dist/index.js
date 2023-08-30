@@ -20,13 +20,13 @@ const cors = require('cors');
 app.use(cors());
 app.use(express_1.default.json());
 const { sequelizee } = require('../postgresconfig');
-const { Userr } = require('../src/models/User.ts');
+const { User } = require('../src/models/User.ts');
 const port = process.env.PORT || 5000;
 const uuid_1 = require("uuid");
 app.post('/user', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = (0, uuid_1.v4)();
     const { email, username, password } = req.body;
-    const user = yield Userr.create({
+    const user = yield User.create({
         id, email, username, password
     });
     res.status(200).json(user);
