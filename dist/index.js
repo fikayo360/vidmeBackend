@@ -37,7 +37,7 @@ app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const { email, username, password, profile_pic, resettoken } = req.body;
     let user;
     try {
-        user = User.create({
+        user = sequelize.User.create({
             id,
             email,
             username,
@@ -55,9 +55,10 @@ app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         app.listen(port, () => console.log(`Server is listening on port ${port}...`));
-        const isSynced = yield sequelize.sync();
+        const isSynced = yield sequelize.sync({ force: false });
         if (isSynced) {
             console.log('The models are created successfully.');
+            console.log(`user model ${sequelize.User}`);
         }
         else {
             console.log('The models could not be created.');
