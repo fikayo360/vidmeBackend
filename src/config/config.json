@@ -1,18 +1,4 @@
 {
-  "development": {
-    "username": "fikayo",
-    "password": "aTd9xPeNcSNagMLDwrRzYj1ScobAUDmS",
-    "database": "vidme",
-    "host": "dpg-cjmm2usdfrcc73a8hbs0-a.oregon-postgres.render.com",
-    "dialect": "postgres"
-  },
-  "test": {
-    "username": "fikayo",
-    "password": "aTd9xPeNcSNagMLDwrRzYj1ScobAUDmS",
-    "database": "vidme",
-    "host": "dpg-cjmm2usdfrcc73a8hbs0-a.oregon-postgres.render.com",
-    "dialect": "postgres"
-  },
   "production": {
     "username": "fikayo",
     "password": "aTd9xPeNcSNagMLDwrRzYj1ScobAUDmS",

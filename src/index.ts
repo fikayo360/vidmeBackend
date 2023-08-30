@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 app.use(cors());
 app.use(express.json());
 const {User} = require('./models/User')
-
+const db = require('./models')
 const port = process.env.PORT || 5000;
 
 const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAUDmS@dpg-cjmm2usdfrcc73a8hbs0-a.oregon-postgres.render.com/vidme', {
@@ -43,22 +43,31 @@ app.post('/users', async (req: Request, res: Response) => {
 });
 
 const start =  async() => {
-  try {
-    app.listen(port, () =>
-      console.log(`Server is listening on port ${port}...`)
-    );
-    const isSynced = await sequelize.sync();
-
-    if (isSynced) {
-      console.log('The models are created successfully.');
-    } else {
-      console.log('The models could not be created.');
-    }
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.log(error);
+  try{
+    db.sequelize.sync({ force: false }).then(function () {
+      app.listen(port, function () {
+        console.log("server is successfully running!");
+      });
+    });
+  }catch(err:any){
+    console.log(err.response.data)
   }
+  // try {
+  //   app.listen(port, () =>
+  //     console.log(`Server is listening on port ${port}...`)
+  //   );
+  //   const isSynced = await sequelize.sync();
+
+  //   if (isSynced) {
+  //     console.log('The models are created successfully.');
+  //   } else {
+  //     console.log('The models could not be created.');
+  //   }
+  //   await sequelize.authenticate();
+  //   console.log('Connection has been established successfully.');
+  // } catch (error) {
+  //   console.log(error);
+  // }
 };
 
 start();
