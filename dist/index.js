@@ -21,7 +21,6 @@ const { Sequelize } = require('sequelize');
 const uuid_1 = require("uuid");
 app.use(cors());
 app.use(express_1.default.json());
-const DataTypes = require("sequelize/lib/data-types");
 const { User } = require('./models/User');
 const port = process.env.PORT || 5000;
 const sequelize = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAUDmS@dpg-cjmm2usdfrcc73a8hbs0-a.oregon-postgres.render.com/vidme', {
@@ -52,18 +51,9 @@ const newU = sequelize.define("users", {
 app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = (0, uuid_1.v4)();
     const { email, name } = req.body;
-    const user = new newU({
-        id,
-        name,
-        email,
+    newU.create({ id: id, name: name, email: email }).catch((err) => {
+        console.log(err);
     });
-    try {
-        yield user.save();
-        res.status(200).json('created');
-    }
-    catch (err) {
-        res.status(400).json(err.response.data);
-    }
     res.status(200).json('created');
 }));
 const start = () => __awaiter(void 0, void 0, void 0, function* () {

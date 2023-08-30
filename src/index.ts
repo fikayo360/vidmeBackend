@@ -7,7 +7,6 @@ const { Sequelize } = require('sequelize')
 import { v4 as uuidv4 } from 'uuid';
 app.use(cors());
 app.use(express.json());
-const DataTypes = require("sequelize/lib/data-types");
 const {User} = require('./models/User')
 
 const port = process.env.PORT || 5000;
@@ -43,18 +42,9 @@ app.post('/users', async (req: Request, res: Response) => {
   const id = uuidv4();
   const { email, name } = req.body;
 
-  const user = new newU({
-    id,
-    name,
-    email,
-  });
-
-  try {
-    await user.save();
-    res.status(200).json('created');
-  } catch (err:any) {
-    res.status(400).json(err.response.data);
-  }
+   newU.create({id:id, name:name, email:email }).catch ((err:any) => {
+    console.log(err)
+   })
   res.status(200).json('created')
 });
 
