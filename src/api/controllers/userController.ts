@@ -48,6 +48,7 @@ class user {
           }
           try{  
             const foundUser = await User.findOne({where:{username:username}})
+            console.log(foundUser);
          
             if(!foundUser){
                 return res.status(StatusCodes.BAD_REQUEST).json('that user does not exist')

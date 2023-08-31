@@ -70,6 +70,7 @@ class user {
             }
             try {
                 const foundUser = yield User.findOne({ where: { username: username } });
+                console.log(foundUser);
                 if (!foundUser) {
                     return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json('that user does not exist');
                 }
