@@ -9,7 +9,7 @@ const apikey = process.env.YOUTUBE_KEY
 class video {
     public async getVideos(req: Request, res: Response){
         console.log(apikey);
-        const query = `${baseUrl}/search?q=funny&regionCode=NG&maxResults=20&key=${apikey}`
+        const query = `${baseUrl}/search?q=funny&maxResults=20&key=${apikey}&type=video&part=snippet`
         try{
              const response = await axios.get(query);
               res.status(StatusCodes.OK).json(response)

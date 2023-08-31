@@ -20,7 +20,7 @@ class video {
     getVideos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(apikey);
-            const query = `${baseUrl}/search?q=funny&regionCode=NG&maxResults=20&key=${apikey}`;
+            const query = `${baseUrl}/search?q=funny&maxResults=20&key=${apikey}&type=video&part=snippet`;
             try {
                 const response = yield axios_1.default.get(query);
                 res.status(http_status_codes_1.StatusCodes.OK).json(response);
