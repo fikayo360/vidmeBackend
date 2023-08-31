@@ -98,12 +98,12 @@ class user {
                 return res.status(404).json('that email does not exist');
             }
             try {
-                let reset = (0, sendResetToken_1.default)(sessionUser.email);
+                let reset = (0, sendResetToken_1.default)(sessionUser.dataValues.email);
                 const updateToken = yield User.update({
                     resettoken: reset
                 }, {
                     where: {
-                        id: sessionUser.id
+                        id: sessionUser.dataValues.id
                     }
                 });
                 console.log(updateToken);
@@ -122,13 +122,13 @@ class user {
             try {
                 const decoded = jsonwebtoken_1.default.verify(token, secretKey);
                 const hashedPassword = yield bcrypt_1.default.hash(newPassword, 10);
-                if (decoded.email === sessionUser.email) {
+                if (decoded.email === sessionUser.dataValues.email) {
                     const updated = yield User.update({
                         resettoken: null,
                         password: hashedPassword
                     }, {
                         where: {
-                            id: sessionUser.id
+                            id: sessionUser.dataValues.id
                         }
                     });
                     console.log(updated);

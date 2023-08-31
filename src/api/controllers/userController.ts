@@ -77,12 +77,12 @@ class user {
             return res.status(404).json('that email does not exist')
         }
         try{
-        let reset = sendResetToken(sessionUser.email)
+        let reset = sendResetToken(sessionUser.dataValues.email)
         const updateToken = await User.update({
             resettoken: reset
           }, {
             where: {
-              id: sessionUser.id
+              id: sessionUser.dataValues.id
             }
           });
           console.log(updateToken);
@@ -94,20 +94,19 @@ class user {
        }
   
        public async changePassword(req: Request, res: Response){
-       
         const {token,email,newPassword} = req.body
         const secretKey: Secret = process.env.JWT_SECRET || 'defaultSecretKey';
         const sessionUser = await User.findOne({where:{email:email}})
           try{
             const decoded = jwt.verify(token,secretKey) as JwtPayload;
             const hashedPassword = await bcrypt.hash(newPassword, 10);
-            if(decoded.email === sessionUser.email){
+            if(decoded.email === sessionUser.dataValues.email){
                 const updated = await User.update({
                     resettoken: null,
                     password: hashedPassword
                   }, {
                     where: {
-                      id: sessionUser.id
+                      id: sessionUser.dataValues.id
                     }
                   });
                   console.log(updated);
