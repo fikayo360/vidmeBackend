@@ -70,14 +70,14 @@ class user {
             }
             try {
                 const foundUser = yield User.findOne({ where: { username: username } });
-                console.log(foundUser);
+                console.log(foundUser.dataValues);
                 if (!foundUser) {
                     return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json('that user does not exist');
                 }
                 if (!bcrypt_1.default.compareSync(password, foundUser.password)) {
                     return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json('wrong password');
                 }
-                const { password: foundUserPassword } = foundUser, others = __rest(foundUser, ["password"]);
+                const _a = foundUser.dataValues, { password: foundUserPassword } = _a, others = __rest(_a, ["password"]);
                 const tokenUser = (0, createTokenUser_1.default)(others);
                 const cookie = (0, jwt_1.createJWT)(tokenUser);
                 return res.status(http_status_codes_1.StatusCodes.OK).json({ user: others, cookie });

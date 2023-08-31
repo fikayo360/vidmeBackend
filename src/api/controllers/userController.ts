@@ -48,7 +48,7 @@ class user {
           }
           try{  
             const foundUser = await User.findOne({where:{username:username}})
-            console.log(foundUser);
+            console.log(foundUser.dataValues);
          
             if(!foundUser){
                 return res.status(StatusCodes.BAD_REQUEST).json('that user does not exist')
@@ -57,7 +57,7 @@ class user {
             if(!bcrypt.compareSync(password,foundUser.password)){
                return res.status(StatusCodes.BAD_REQUEST).json('wrong password')
              }
-             const { password: foundUserPassword, ...others } = foundUser;
+             const { password: foundUserPassword, ...others } = foundUser.dataValues;
              const tokenUser = createTokenUser(others);
              const cookie = createJWT(tokenUser)
              return res.status(StatusCodes.OK).json({ user: others,cookie });
