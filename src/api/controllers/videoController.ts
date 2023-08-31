@@ -11,8 +11,8 @@ class video {
         const query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=20&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
         try{
              const response = await axios.get(query);
-             console.log(response);
-              return res.status(StatusCodes.OK).json(response)
+             console.log(response.data);
+              return res.status(StatusCodes.OK).json(response.data)
         }catch(err:any){
             console.log(err.response.data);
         }
