@@ -51,7 +51,7 @@ class user {
             try {
                 const hashedPassword = bcrypt_1.default.hashSync(password, 10);
                 const savedUser = yield User.create({
-                    id, email, username, hashedPassword
+                    id, email, username, password: hashedPassword
                 });
                 const tokenUser = (0, createTokenUser_1.default)(savedUser);
                 const cookie = (0, jwt_1.createJWT)(tokenUser);

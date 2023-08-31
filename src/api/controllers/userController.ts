@@ -31,7 +31,7 @@ class user {
         try{
             const hashedPassword = bcrypt.hashSync(password, 10);
           const savedUser = await User.create({
-            id,email,username,hashedPassword
+            id,email,username,password:hashedPassword
           });
           const tokenUser = createTokenUser(savedUser)
           const cookie = createJWT(tokenUser)
