@@ -22,7 +22,9 @@ app.use(express_1.default.json());
 const { sequelizee } = require('../postgresconfig');
 const port = process.env.PORT || 5000;
 const userRoutes = require('./api/routes/userRoute');
+const videoRoutes = require('./api/routes/videoRoutes');
 app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/video', videoRoutes);
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         app.listen(port, () => console.log(`Server is listening on port ${port}...`));

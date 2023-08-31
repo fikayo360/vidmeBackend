@@ -1,3 +1,3 @@
 import user from "./userController"
-
-export {user}
+import video from "./videoController"
+export {user,video}
