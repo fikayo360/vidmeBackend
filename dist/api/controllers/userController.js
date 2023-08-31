@@ -49,8 +49,9 @@ class user {
                 return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json('user already exists');
             }
             try {
+                const hashedPassword = bcrypt_1.default.hashSync(password, 10);
                 const savedUser = yield User.create({
-                    id, email, username, password
+                    id, email, username, hashedPassword
                 });
                 const tokenUser = (0, createTokenUser_1.default)(savedUser);
                 const cookie = (0, jwt_1.createJWT)(tokenUser);
