@@ -27,4 +27,4 @@ const User = sequelizee.define('User', {
         type: DataTypes.STRING(255),
     }
 });
-module.exports = { User };
+module.exports = User;

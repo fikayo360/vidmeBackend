@@ -24,7 +24,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const User = require('../../models/User');
-const { sequelizeeUser } = require('../../../postgresconfig');
 const sendResetToken_1 = __importDefault(require("../../utils/sendResetToken"));
 const http_status_codes_1 = require("http-status-codes");
 const bcrypt_1 = __importDefault(require("bcrypt"));

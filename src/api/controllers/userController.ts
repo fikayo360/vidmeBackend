@@ -1,5 +1,4 @@
 const User = require('../../models/User')
-const {sequelizeeUser} = require('../../../postgresconfig')
 import sendResetToken from "../../utils/sendResetToken"
 import { StatusCodes } from 'http-status-codes';
 import { Request, Response } from 'express';
