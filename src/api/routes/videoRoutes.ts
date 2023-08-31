@@ -4,7 +4,7 @@ import {user,video} from '../controllers/index'
 const router:Router = express.Router()
 const newVideo = new video()
 
-router.route("/video").post(newVideo.getVideos)
+router.route("/get").get(authUser,newVideo.getVideos)
 
 
 module.exports = router
