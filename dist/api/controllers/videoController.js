@@ -8,21 +8,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const youtube = require('youtube-api');
 const http_status_codes_1 = require("http-status-codes");
-const youTube = new youtube({
-    type: "key",
-    key: process.env.YOUTUBE_KEY
-});
+const axios_1 = __importDefault(require("axios"));
+const baseUrl = "https://www.googleapis.com/youtube/v3";
+const apikey = process.env.YOUTUBE_KEY;
 class video {
     getVideos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log(apikey);
+            const query = `${baseUrl}/search?q=funny&regionCode=NG&maxResults=20&key=${apikey}`;
             try {
-                const videos = yield youTube.search({
-                    q: 'funny', maxResults: 20, regionCode: 'NG'
-                });
-                res.status(http_status_codes_1.StatusCodes.OK).json(videos);
+                const response = yield axios_1.default.get(query);
+                res.status(http_status_codes_1.StatusCodes.OK).json(response);
             }
             catch (err) {
                 console.log(err.response.data);

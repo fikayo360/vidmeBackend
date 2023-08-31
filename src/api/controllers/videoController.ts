@@ -1,20 +1,18 @@
-const youtube = require('youtube-api');
+
 import { StatusCodes } from 'http-status-codes';
 import { Request, Response } from 'express';
+import axios from 'axios';
 
-const youTube =  new youtube({
-    type: "key",
-    key: process.env.YOUTUBE_KEY
-});
+const baseUrl = "https://www.googleapis.com/youtube/v3"
+const apikey = process.env.YOUTUBE_KEY
 
 class video {
-
     public async getVideos(req: Request, res: Response){
+        console.log(apikey);
+        const query = `${baseUrl}/search?q=funny&regionCode=NG&maxResults=20&key=${apikey}`
         try{
-            const videos = await youTube.search({
-                q: 'funny',maxResults:20,regionCode: 'NG'
-              });
-              res.status(StatusCodes.OK).json(videos)
+             const response = await axios.get(query);
+              res.status(StatusCodes.OK).json(response)
         }catch(err:any){
             console.log(err.response.data);
         }
