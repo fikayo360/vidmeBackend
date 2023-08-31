@@ -5,7 +5,7 @@ dotenv.config();
 const cors = require('cors');
 app.use(cors());
 app.use(express.json());
-const {sequelizee} = require('./')
+const {sequelizee} = require('./postgresconfig')
 const {User} = require('./src/models/User')
 const port = process.env.PORT || 5000;
 import { v4 as uuidv4 } from 'uuid';

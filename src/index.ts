@@ -6,20 +6,12 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 const {sequelizee} = require('../postgresconfig')
-const {User} = require('../src/models/User.ts')
+
 const port = process.env.PORT || 5000;
-import { v4 as uuidv4 } from 'uuid';
 
-app.post('/user', async (req: Request, res: Response) => {
-    const id = uuidv4();
-  const { email, username,password } = req.body;
+const userRoutes = require('../src/api/routes/userRoute')
 
-  const user = await User.create({
-    id,email,username,password
-  });
-  res.status(200).json(user)
-  console.log('f');
-});
+app.use('/api/v1/user', userRoutes);
 
 const start =  async() => {
   try {
