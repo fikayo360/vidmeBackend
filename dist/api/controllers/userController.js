@@ -23,7 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const { user } = require('../../models/User');
+const User = require('../../models/User');
 const { sequelizeeUser } = require('../../../postgresconfig');
 const sendResetToken_1 = __importDefault(require("../../utils/sendResetToken"));
 const http_status_codes_1 = require("http-status-codes");
@@ -33,7 +33,7 @@ const validateEmail_1 = __importDefault(require("../../utils/validateEmail"));
 const createTokenUser_1 = __importDefault(require("../../utils/createTokenUser"));
 const jwt_1 = require("../../utils/jwt");
 const uuid_1 = require("uuid");
-class User {
+class user {
     register(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const id = (0, uuid_1.v4)();
@@ -44,13 +44,13 @@ class User {
             if ((0, validateEmail_1.default)(email) === false) {
                 return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json('invalid mail');
             }
-            const userExists = yield user.findOne({ where: { username: username } });
-            const emailExists = yield user.findOne({ where: { email: email } });
+            const userExists = yield User.findOne({ where: { username: username } });
+            const emailExists = yield User.findOne({ where: { email: email } });
             if (userExists || emailExists) {
                 return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json('user already exists');
             }
             try {
-                const savedUser = yield user.create({
+                const savedUser = yield User.create({
                     id, email, username, password
                 });
                 const tokenUser = (0, createTokenUser_1.default)(savedUser);
@@ -69,7 +69,7 @@ class User {
                 return res.status(500).json("pls ensure fields are not empty ");
             }
             try {
-                const foundUser = yield user.findOne({ where: { username: username } });
+                const foundUser = yield User.findOne({ where: { username: username } });
                 if (!foundUser) {
                     return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json('that user does not exist');
                 }
@@ -89,7 +89,7 @@ class User {
     forgotPassword(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { email } = req.body;
-            const sessionUser = yield user.findOne({ where: { email: email } });
+            const sessionUser = yield User.findOne({ where: { email: email } });
             if ((0, validateEmail_1.default)(email) === false) {
                 return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json('invalid mail');
             }
@@ -98,7 +98,7 @@ class User {
             }
             try {
                 let reset = (0, sendResetToken_1.default)(sessionUser.email);
-                const updateToken = yield user.update({
+                const updateToken = yield User.update({
                     resettoken: reset
                 }, {
                     where: {
@@ -117,12 +117,12 @@ class User {
         return __awaiter(this, void 0, void 0, function* () {
             const { token, email, newPassword } = req.body;
             const secretKey = process.env.JWT_SECRET || 'defaultSecretKey';
-            const sessionUser = yield user.findOne({ where: { email: email } });
+            const sessionUser = yield User.findOne({ where: { email: email } });
             try {
                 const decoded = jsonwebtoken_1.default.verify(token, secretKey);
                 const hashedPassword = yield bcrypt_1.default.hash(newPassword, 10);
                 if (decoded.email === sessionUser.email) {
-                    const updated = yield user.update({
+                    const updated = yield User.update({
                         resettoken: null,
                         password: hashedPassword
                     }, {
@@ -148,8 +148,8 @@ class User {
             const username = req.user.username;
             const id = req.user.userId;
             try {
-                const userExists = yield user.findOne({ where: { username: username } });
-                const updatepicture = yield user.update({ profile_pic: newProfilePic }, {
+                const userExists = yield User.findOne({ where: { username: username } });
+                const updatepicture = yield User.update({ profile_pic: newProfilePic }, {
                     where: {
                         id: id
                     }
@@ -162,4 +162,4 @@ class User {
         });
     }
 }
-exports.default = User;
+exports.default = user;

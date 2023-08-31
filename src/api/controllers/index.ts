@@ -1,3 +1,3 @@
-import User from "./userController";
+import user from "./userController"
 
-export {User}
+export {user}

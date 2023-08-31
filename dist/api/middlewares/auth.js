@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt_1 = require("../../utils/jwt");
 const status_codes_1 = require("http-status-codes/build/cjs/status-codes");
-const User = require('../../models/User');
 const authUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer")) {

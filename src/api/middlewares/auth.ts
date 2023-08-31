@@ -1,7 +1,6 @@
 import { Request, Response,NextFunction } from 'express';
 import { isTokenValid } from '../../utils/jwt';
 import { StatusCodes } from 'http-status-codes/build/cjs/status-codes';
-const User = require('../../models/User')
 
 interface User {
     userId: string;

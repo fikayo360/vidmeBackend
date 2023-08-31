@@ -1,4 +1,4 @@
-const {user} = require('../../models/User')
+const User = require('../../models/User')
 const {sequelizeeUser} = require('../../../postgresconfig')
 import sendResetToken from "../../utils/sendResetToken"
 import { StatusCodes } from 'http-status-codes';
@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 
     
  
-class User {
+class user {
     public async register(req: Request, res: Response){
         const id = uuidv4();
         const {email,username,password} = req.body
@@ -22,15 +22,15 @@ class User {
         if(validateEmail(email) === false){
           return res.status(StatusCodes.BAD_REQUEST).json('invalid mail')
       }
-        const userExists = await user.findOne({where:{username:username}})
-        const emailExists = await user.findOne({where:{email:email}})
+        const userExists = await User.findOne({where:{username:username}})
+        const emailExists = await User.findOne({where:{email:email}})
 
         if(userExists || emailExists){
           return res.status(StatusCodes.BAD_REQUEST).json('user already exists')
         } 
 
         try{
-          const savedUser = await user.create({
+          const savedUser = await User.create({
             id,email,username,password
           });
           const tokenUser = createTokenUser(savedUser)
@@ -47,7 +47,7 @@ class User {
             return res.status(500).json("pls ensure fields are not empty ")
           }
           try{  
-            const foundUser = await user.findOne({where:{username:username}})
+            const foundUser = await User.findOne({where:{username:username}})
          
             if(!foundUser){
                 return res.status(StatusCodes.BAD_REQUEST).json('that user does not exist')
@@ -68,7 +68,7 @@ class User {
 
        public async forgotPassword(req: Request, res: Response){
         const {email} = req.body
-        const sessionUser = await user.findOne({where:{email:email}})
+        const sessionUser = await User.findOne({where:{email:email}})
         if(validateEmail(email) === false){
           return res.status(StatusCodes.BAD_REQUEST).json('invalid mail')
       }
@@ -77,7 +77,7 @@ class User {
         }
         try{
         let reset = sendResetToken(sessionUser.email)
-        const updateToken = await user.update({
+        const updateToken = await User.update({
             resettoken: reset
           }, {
             where: {
@@ -96,12 +96,12 @@ class User {
        
         const {token,email,newPassword} = req.body
         const secretKey: Secret = process.env.JWT_SECRET || 'defaultSecretKey';
-        const sessionUser = await user.findOne({where:{email:email}})
+        const sessionUser = await User.findOne({where:{email:email}})
           try{
             const decoded = jwt.verify(token,secretKey) as JwtPayload;
             const hashedPassword = await bcrypt.hash(newPassword, 10);
             if(decoded.email === sessionUser.email){
-                const updated = await user.update({
+                const updated = await User.update({
                     resettoken: null,
                     password: hashedPassword
                   }, {
@@ -128,8 +128,8 @@ class User {
         const id = req.user.userId
         
         try{
-          const userExists = await user.findOne({where:{username:username}})
-          const updatepicture = await user.update({profile_pic:newProfilePic},{
+          const userExists = await User.findOne({where:{username:username}})
+          const updatepicture = await User.update({profile_pic:newProfilePic},{
             where:{
                 id:id
             }
@@ -141,4 +141,4 @@ class User {
       }
 }
 
-export default User
+export default user
