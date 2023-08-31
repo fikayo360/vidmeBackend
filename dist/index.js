@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express_1.default.json());
 const { sequelizee } = require('../postgresconfig');
 const port = process.env.PORT || 5000;
-const userRoutes = require('../src/api/routes/userRoute');
+const userRoutes = require('./api/routes/userRoute');
 app.use('/api/v1/user', userRoutes);
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
