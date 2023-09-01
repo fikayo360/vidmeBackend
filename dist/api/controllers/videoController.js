@@ -20,19 +20,18 @@ const Video = require('../../models/Video');
 class video {
     getVideos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const videoItems = [];
             try {
-                const videoItems = [];
                 mock_1.default.map((item) => __awaiter(this, void 0, void 0, function* () {
                     let q = item;
                     let encodedQuery = encodeURIComponent(q);
-                    let query = `https://www.googleapis.com/youtube/v3/search?q='${encodedQuery}'&regionCode=NG&maxResults=50&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet`;
+                    let query = `https://www.googleapis.com/youtube/v3/search?q='${encodedQuery}'&regionCode=NG&maxResults=30&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet`;
                     const response = yield axios_1.default.get(query);
-                    console.log(response.data);
                     const allitems = response.data.items.map((item) => {
                         videoItems.push(item);
                     });
                 }));
-                videoItems.map((item) => {
+                videoItems.map((item) => __awaiter(this, void 0, void 0, function* () {
                     const id = (0, uuid_1.v4)();
                     const videoId = item.id.videoId;
                     const publishedAt = item.snippet.publishedAt;
@@ -42,9 +41,9 @@ class video {
                     const thumbnail = item.snippet.thumbnails.default.url;
                     const channelTitle = item.snippet.channelTitle;
                     console.log({ id, videoId, publishedAt, channelId, title, description, thumbnail, channelTitle });
-                    const createVideo = Video.create({ id, videoId, publishedAt, channelId, title, description, thumbnailUrl: thumbnail, channelTitle });
+                    const createVideo = yield Video.create({ id, videoId, publishedAt, channelId, title, description, thumbnailUrl: thumbnail, channelTitle });
                     console.log('video created');
-                });
+                }));
                 res.status(http_status_codes_1.StatusCodes.OK).json('done');
             }
             catch (err) {

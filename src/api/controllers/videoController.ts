@@ -10,22 +10,20 @@ const Video = require('../../models/Video')
 
 class video {
     public async getVideos(req: Request, res: Response){
-         
+        const videoItems:any = []
         try{
-            const videoItems:any = []
             funnyGuys.map(
                 async(item:string) => {
                 let q = item
                 let encodedQuery = encodeURIComponent(q);
-                let query = `https://www.googleapis.com/youtube/v3/search?q='${encodedQuery}'&regionCode=NG&maxResults=50&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet`
+                let query = `https://www.googleapis.com/youtube/v3/search?q='${encodedQuery}'&regionCode=NG&maxResults=30&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet`
                 const response = await axios.get(query);
-                console.log(response.data);
                 const allitems = response.data.items.map((item:any) => {
                     videoItems.push(item) 
                 })
             })  
 
-            videoItems.map((item:any)=> {
+            videoItems.map(async(item:any)=> {
                 const id = uuidv4();
                 const videoId = item.id.videoId;
                 const publishedAt = item.snippet.publishedAt
@@ -35,7 +33,7 @@ class video {
                 const thumbnail = item.snippet.thumbnails.default.url
                 const channelTitle = item.snippet.channelTitle
                 console.log({id,videoId,publishedAt,channelId,title,description,thumbnail,channelTitle});
-                const createVideo = Video.create({id,videoId,publishedAt,channelId,title,description,thumbnailUrl:thumbnail,channelTitle})
+                const createVideo = await Video.create({id,videoId,publishedAt,channelId,title,description,thumbnailUrl:thumbnail,channelTitle})
                 console.log('video created');
             })
 
