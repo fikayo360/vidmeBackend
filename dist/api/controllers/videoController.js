@@ -22,7 +22,7 @@ class video {
             let query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
             try {
                 const getToken = yield Reset.findAll();
-                console.log(getToken.Reset.dataValues);
+                console.log(getToken.dataValues);
                 // if(getToken){
                 //     query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
                 // }
