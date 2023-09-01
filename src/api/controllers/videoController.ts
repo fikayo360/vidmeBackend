@@ -17,9 +17,9 @@ class video {
              const createReset = await Reset.create({
                 id,token:nextPageToken
               });
-               console.log(response.data);
+               console.log(response);
                console.log('token created');
-              return res.status(StatusCodes.OK).json(response.data)
+              return res.status(StatusCodes.OK).json(response)
         }catch(err:any){
             console.log(err.response.data);
         }

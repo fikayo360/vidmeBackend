@@ -27,9 +27,9 @@ class video {
                 const createReset = yield Reset.create({
                     id, token: nextPageToken
                 });
-                console.log(response.data);
+                console.log(response);
                 console.log('token created');
-                return res.status(http_status_codes_1.StatusCodes.OK).json(response.data);
+                return res.status(http_status_codes_1.StatusCodes.OK).json(response);
             }
             catch (err) {
                 console.log(err.response.data);
