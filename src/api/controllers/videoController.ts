@@ -23,7 +23,8 @@ class video {
             const thumbnail = response.data.items[0].snippet.thumbnails.default.url
             const channelTitle = response.data.items[0].snippet.channelTitle
             console.log({id,videoId,publishedAt,channelId,title,description,thumbnail,channelTitle});
-            res.status(StatusCodes.OK).json({id,videoId,publishedAt,channelId,title,description,thumbnail,channelTitle})
+            const createVideo = Video.create({id,videoId,publishedAt,channelId,title,description,thumbnailUrl:thumbnail,channelTitle})
+            res.status(StatusCodes.OK).json('video created')
             console.log('video created');   
             
         }catch(err:any){
