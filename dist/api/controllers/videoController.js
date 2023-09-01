@@ -19,21 +19,23 @@ const Video = require('../../models/Video');
 class video {
     getVideos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            let query = 'https://www.googleapis.com/youtube/v3/search?q=sabinus&regionCode=NG&maxResults=1&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
             try {
-                const id = (0, uuid_1.v4)();
-                const response = yield axios_1.default.get(query);
-                const videoId = response.data.items[0].id.videoId;
-                const publishedAt = response.data.items[0].snippet.publishedAt;
-                const channelId = response.data.items[0].snippet.channelId;
-                const title = response.data.items[0].snippet.title;
-                const description = response.data.items[0].snippet.description;
-                const thumbnail = response.data.items[0].snippet.thumbnails.default.url;
-                const channelTitle = response.data.items[0].snippet.channelTitle;
-                console.log({ id, videoId, publishedAt, channelId, title, description, thumbnail, channelTitle });
-                const createVideo = Video.create({ id, videoId, publishedAt, channelId, title, description, thumbnailUrl: thumbnail, channelTitle });
-                res.status(http_status_codes_1.StatusCodes.OK).json('video created');
-                console.log('video created');
+                Video.map((item) => __awaiter(this, void 0, void 0, function* () {
+                    let query = `https://www.googleapis.com/youtube/v3/search?q=${item}&regionCode=NG&maxResults=20&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet`;
+                    const response = yield axios_1.default.get(query);
+                    const id = (0, uuid_1.v4)();
+                    const videoId = response.data.items[0].id.videoId;
+                    const publishedAt = response.data.items[0].snippet.publishedAt;
+                    const channelId = response.data.items[0].snippet.channelId;
+                    const title = response.data.items[0].snippet.title;
+                    const description = response.data.items[0].snippet.description;
+                    const thumbnail = response.data.items[0].snippet.thumbnails.default.url;
+                    const channelTitle = response.data.items[0].snippet.channelTitle;
+                    console.log({ id, videoId, publishedAt, channelId, title, description, thumbnail, channelTitle });
+                    const createVideo = Video.create({ id, videoId, publishedAt, channelId, title, description, thumbnailUrl: thumbnail, channelTitle });
+                    console.log('video created');
+                }));
+                res.status(http_status_codes_1.StatusCodes.OK).json('videos created');
             }
             catch (err) {
                 console.log(err.response.data);
