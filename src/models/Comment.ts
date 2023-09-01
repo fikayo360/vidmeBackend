@@ -1,6 +1,7 @@
-const {sequelizeeC} = require('../../postgresconfig')
-
-    const Comments = sequelizeeC.define('Comment', {
+const {sequelizee} = require('../../postgresconfig')
+import { DataTypes } from "sequelize";
+const Video = require('./Video')
+    const Comment = sequelizee.define('Comment', {
       id: {
           type: DataTypes.UUID,
           primaryKey: true,
@@ -23,4 +24,4 @@ const {sequelizeeC} = require('../../postgresconfig')
       }
   });
 
-  module.exports = {Comments}
+  module.exports = {Comment}

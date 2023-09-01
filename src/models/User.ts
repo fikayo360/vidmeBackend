@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+import { DataTypes } from "sequelize";
 const {sequelizee} = require('../../postgresconfig')
 
     const User = sequelizee.define('User', {
@@ -28,4 +28,4 @@ const {sequelizee} = require('../../postgresconfig')
         }
       });
 
-      module.exports = User
+      module.exports = {User}

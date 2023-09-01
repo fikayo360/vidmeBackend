@@ -1,12 +1,15 @@
 "use strict";
-const { likedb } = require('../../postgresconfig');
-const Like = likedb.define('Like', {
+Object.defineProperty(exports, "__esModule", { value: true });
+const { sequelizee } = require('../../postgresconfig');
+const sequelize_1 = require("sequelize");
+const Video = require('./Video');
+const Like = sequelizee.define('Like', {
     id: {
-        type: DataTypes.UUID,
+        type: sequelize_1.DataTypes.UUID,
         primaryKey: true,
     },
     videoId: {
-        type: DataTypes.STRING(255),
+        type: sequelize_1.DataTypes.STRING(255),
         allowNull: false,
         references: {
             model: Video,
@@ -14,7 +17,7 @@ const Like = likedb.define('Like', {
         }
     },
     userId: {
-        type: DataTypes.STRING(255),
+        type: sequelize_1.DataTypes.STRING(255),
         allowNull: false
     }
 });

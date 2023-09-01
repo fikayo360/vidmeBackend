@@ -1,6 +1,7 @@
-const {likedb} = require('../../postgresconfig')
-
-  const Like = likedb.define('Like', {
+const {sequelizee} = require('../../postgresconfig')
+import { DataTypes } from "sequelize";
+const Video = require('./Video')
+  const Like = sequelizee.define('Like', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,

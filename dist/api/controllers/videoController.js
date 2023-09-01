@@ -14,15 +14,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const http_status_codes_1 = require("http-status-codes");
 const axios_1 = __importDefault(require("axios"));
+const uuid_1 = require("uuid");
+const Reset = require('../../models/Reset');
 const apikey = process.env.YOUTUBE_KEY;
+const max = 2;
+const queryValue = 'funny';
 class video {
     getVideos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(apikey);
-            const query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=20&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
+            const query = `'https://www.googleapis.com/youtube/v3/search?q=${queryValue}&regionCode=NG&maxResults=${max}&key=${apikey}&type=video&part=snippet'`;
             try {
                 const response = yield axios_1.default.get(query);
+                const nextPageToken = response.data.nextPageToken;
+                const id = (0, uuid_1.v4)();
+                const createReset = yield Reset.create({
+                    id, token: nextPageToken
+                });
                 console.log(response.data);
+                console.log('token created');
                 return res.status(http_status_codes_1.StatusCodes.OK).json(response.data);
             }
             catch (err) {
