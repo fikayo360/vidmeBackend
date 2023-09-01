@@ -22,14 +22,14 @@ class video {
             const query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
             try {
                 const response = yield axios_1.default.get(query);
+                res.status(http_status_codes_1.StatusCodes.OK).json(response.data);
+                console.log(response.data);
                 const nextPageToken = response.data.nextPageToken;
                 const id = (0, uuid_1.v4)();
                 const createReset = yield Reset.create({
                     id, token: nextPageToken
                 });
-                console.log(response.data);
                 console.log('token created');
-                return res.status(http_status_codes_1.StatusCodes.OK).json(response.data);
             }
             catch (err) {
                 console.log(err.response.data);

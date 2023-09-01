@@ -12,14 +12,15 @@ class video {
         const query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
         try{
              const response = await axios.get(query);
+             res.status(StatusCodes.OK).json(response.data)
+             console.log(response.data);
              const nextPageToken = response.data.nextPageToken
              const id = uuidv4();
              const createReset = await Reset.create({
                 id,token:nextPageToken
               });
-               console.log(response.data);
-               console.log('token created');
-              return res.status(StatusCodes.OK).json(response.data)
+             console.log('token created');
+              
         }catch(err:any){
             console.log(err.response.data);
         }
