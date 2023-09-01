@@ -15,28 +15,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const http_status_codes_1 = require("http-status-codes");
 const axios_1 = __importDefault(require("axios"));
 const uuid_1 = require("uuid");
-const Reset = require('../../models/Reset');
+const Video = require('../../models/Video');
 class video {
     getVideos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            let query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
+            let query = 'https://www.googleapis.com/youtube/v3/search?q=sabinus&regionCode=NG&maxResults=1&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
             try {
-                const getToken = yield Reset.findAll();
-                const tok = getToken[0].dataValues.token;
-                if (getToken) {
-                    query = `https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet&nextPageToken=${tok}`;
-                    const response = yield axios_1.default.get(query);
-                    res.status(http_status_codes_1.StatusCodes.OK).json(response.data);
-                }
                 const id = (0, uuid_1.v4)();
                 const response = yield axios_1.default.get(query);
-                res.status(http_status_codes_1.StatusCodes.OK).json(response.data);
-                const nextPageToken = response.data.nextPageToken;
-                console.log(nextPageToken);
-                const createReset = yield Reset.create({
-                    id, token: nextPageToken
-                });
-                console.log('token created');
+                const videoId = response.data.items[0].id.videoId;
+                const publishedAt = response.data.items[0].snippet.publishedAt;
+                const channelId = response.data.items[0].snippet.channelId;
+                const title = response.data.items[0].snippet.title;
+                const description = response.data.items[0].snippet.description;
+                const thumbnail = response.data.items[0].snippet.thumbnails.default.url;
+                const channelTitle = response.data.items[0].snippet.channelTitle;
+                console.log({ id, videoId, publishedAt, channelId, title, description, thumbnail, channelTitle });
+                res.status(http_status_codes_1.StatusCodes.OK).json({ id, videoId, publishedAt, channelId, title, description, thumbnail, channelTitle });
+                console.log('video created');
             }
             catch (err) {
                 console.log(err.response.data);
