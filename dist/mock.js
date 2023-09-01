@@ -26,6 +26,19 @@ const funnyGuys = [
     'Taaooma',
     'mr macaroni',
     'de stalker',
-    'woliagba'
+    'woliagba',
+    '2WEI',
+    'TheOdd1sOut',
+    'Los Polinesios',
+    'Whindersson Nunes',
+    'German Garmendia',
+    'The Try Guys',
+    'BB Ki Vines',
+    'The Sidemen',
+    'FailArmy',
+    'Epic Fail Guys',
+    'Fail Compilations',
+    'What Could Go Wrong',
+    'BaDoink.TV'
 ];
 exports.default = funnyGuys;
