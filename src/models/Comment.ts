@@ -24,4 +24,4 @@ const Video = require('./Video')
       }
   });
 
-  module.exports = {Comment}
+  module.exports = Comment

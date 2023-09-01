@@ -13,4 +13,4 @@ const Reset = sequelizee.define('Reset', {
         notNull: true,
     }
 });
-module.exports = { Reset };
+module.exports = Reset;

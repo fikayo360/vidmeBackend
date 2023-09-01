@@ -13,4 +13,4 @@ const {sequelizee} = require('../../postgresconfig')
         }
       });
 
-      module.exports = {Reset}
+      module.exports = Reset

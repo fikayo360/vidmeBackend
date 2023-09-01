@@ -21,4 +21,4 @@ const Video = require('./Video')
 })
 
 
-module.exports = {Like}
+module.exports = Like

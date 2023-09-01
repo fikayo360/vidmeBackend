@@ -37,4 +37,4 @@ const Video = sequelizee.define('Video', {
         allowNull: false
     }
 });
-module.exports = { Video };
+module.exports = Video;

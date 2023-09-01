@@ -25,4 +25,4 @@ const Comment = sequelizee.define('Comment', {
         allowNull: false
     }
 });
-module.exports = { Comment };
+module.exports = Comment;

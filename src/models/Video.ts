@@ -37,4 +37,4 @@ const {sequelizee} = require('../../postgresconfig')
         }
     })
     
-    module.exports = {Video}
+    module.exports = Video

@@ -28,4 +28,4 @@ const {sequelizee} = require('../../postgresconfig')
         }
       });
 
-      module.exports = {User}
+      module.exports = User

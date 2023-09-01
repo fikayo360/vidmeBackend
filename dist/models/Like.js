@@ -21,4 +21,4 @@ const Like = sequelizee.define('Like', {
         allowNull: false
     }
 });
-module.exports = { Like };
+module.exports = Like;
