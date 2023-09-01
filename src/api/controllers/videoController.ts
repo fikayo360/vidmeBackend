@@ -14,18 +14,16 @@ class video {
         try{
             const id = uuidv4();
             const getResetToken = await Reset.findAll()
-            console.log(getResetToken);
-
-             const response = await axios.get(query);
-             res.status(StatusCodes.OK).json(response.data)
-
-             const nextPageToken = response.data.nextPageToken
-             console.log(nextPageToken);
-
-             const createReset = await Reset.create({
-                id,token:nextPageToken
-              });
-             console.log('token created');    
+            if (getResetToken === undefined){
+                const response = await axios.get(query);
+                res.status(StatusCodes.OK).json(response.data)
+                const nextPageToken = response.data.nextPageToken
+                console.log(nextPageToken);
+                const createReset = await Reset.create({
+                    id,token:nextPageToken
+                  });
+                 console.log('token created');   
+            } 
         }catch(err:any){
             console.log(err.response.data);
         }

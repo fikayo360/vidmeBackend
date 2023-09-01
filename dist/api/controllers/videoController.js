@@ -23,15 +23,16 @@ class video {
             try {
                 const id = (0, uuid_1.v4)();
                 const getResetToken = yield Reset.findAll();
-                console.log(getResetToken);
-                const response = yield axios_1.default.get(query);
-                res.status(http_status_codes_1.StatusCodes.OK).json(response.data);
-                const nextPageToken = response.data.nextPageToken;
-                console.log(nextPageToken);
-                const createReset = yield Reset.create({
-                    id, token: nextPageToken
-                });
-                console.log('token created');
+                if (getResetToken === undefined) {
+                    const response = yield axios_1.default.get(query);
+                    res.status(http_status_codes_1.StatusCodes.OK).json(response.data);
+                    const nextPageToken = response.data.nextPageToken;
+                    console.log(nextPageToken);
+                    const createReset = yield Reset.create({
+                        id, token: nextPageToken
+                    });
+                    console.log('token created');
+                }
             }
             catch (err) {
                 console.log(err.response.data);
