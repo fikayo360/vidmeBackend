@@ -13,7 +13,7 @@ class video {
         try{
             Video.map(
                 async(item:String) => {
-                let query = `https://www.googleapis.com/youtube/v3/search?q=${item}&regionCode=NG&maxResults=50&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet`
+                let query = 'https://www.googleapis.com/youtube/v3/search?q='+item+'&regionCode=NG&maxResults=50&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
                 const response = await axios.get(query);
                 const id = uuidv4();
                 const videoId = response.data.items[0].id.videoId;
