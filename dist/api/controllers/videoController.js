@@ -21,7 +21,10 @@ class video {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 Video.map((item) => __awaiter(this, void 0, void 0, function* () {
-                    let query = 'https://www.googleapis.com/youtube/v3/search?q=' + item + '&regionCode=NG&maxResults=50&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
+                    let q = item;
+                    let encodedQuery = encodeURIComponent(q);
+                    let query = 'https://www.googleapis.com/youtube/v3/search?&regionCode=NG&maxResults=50&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
+                    query += `q=${encodedQuery}`;
                     const response = yield axios_1.default.get(query);
                     const id = (0, uuid_1.v4)();
                     const videoId = response.data.items[0].id.videoId;

@@ -12,8 +12,11 @@ class video {
          
         try{
             Video.map(
-                async(item:String) => {
-                let query = 'https://www.googleapis.com/youtube/v3/search?q='+item+'&regionCode=NG&maxResults=50&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
+                async(item:string|number|boolean) => {
+                let q = item
+                let encodedQuery = encodeURIComponent(q);
+                let query = 'https://www.googleapis.com/youtube/v3/search?&regionCode=NG&maxResults=50&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
+                query += `q=${encodedQuery}`
                 const response = await axios.get(query);
                 const id = uuidv4();
                 const videoId = response.data.items[0].id.videoId;
