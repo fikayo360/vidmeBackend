@@ -7,10 +7,10 @@ const {sequelizee} = require('../../postgresconfig')
           primaryKey: true,
         },
         videoId: {
-                type:DataTypes.STRING(255),
-                unique: true,
-                allowNull: false
-            },
+        type:DataTypes.STRING(255),
+        unique: true,
+        allowNull: false
+        },
         title: {
             type:DataTypes.STRING(255),
             allowNull: false
