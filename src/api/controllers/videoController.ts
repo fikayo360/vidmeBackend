@@ -9,9 +9,14 @@ const Reset = require('../../models/Reset')
 class video {
     public async getVideos(req: Request, res: Response){
        
-        const query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
+        let query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
         
         try{
+            const getToken = await Reset.findAll()
+            console.log(getToken.dataValues);
+            // if(getToken){
+            //     query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
+            // }
             const id = uuidv4();
             const response = await axios.get(query);
             res.status(StatusCodes.OK).json(response.data)

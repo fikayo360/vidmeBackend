@@ -19,8 +19,13 @@ const Reset = require('../../models/Reset');
 class video {
     getVideos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
+            let query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
             try {
+                const getToken = yield Reset.findAll();
+                console.log(getToken.dataValues);
+                // if(getToken){
+                //     query = 'https://www.googleapis.com/youtube/v3/search?q=funny&regionCode=NG&maxResults=2&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
+                // }
                 const id = (0, uuid_1.v4)();
                 const response = yield axios_1.default.get(query);
                 res.status(http_status_codes_1.StatusCodes.OK).json(response.data);
