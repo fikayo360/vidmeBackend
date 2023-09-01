@@ -11,7 +11,7 @@ const queryValue = 'funny'
 class video {
     public async getVideos(req: Request, res: Response){
         console.log(apikey);
-        const query = `'https://www.googleapis.com/youtube/v3/search?q=${queryValue}&regionCode=NG&maxResults=${max}&key=${apikey}&type=video&part=snippet'`
+        const query = 'https://www.googleapis.com/youtube/v3/search?q='+queryValue+'&regionCode=NG&maxResults='+max+'&key='+apikey+'&type=video&part=snippet'
         try{
              const response = await axios.get(query);
              const nextPageToken = response.data.nextPageToken

@@ -23,7 +23,7 @@ class video {
     getVideos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(apikey);
-            const query = `'https://www.googleapis.com/youtube/v3/search?q=${queryValue}&regionCode=NG&maxResults=${max}&key=${apikey}&type=video&part=snippet'`;
+            const query = 'https://www.googleapis.com/youtube/v3/search?q=' + queryValue + '&regionCode=NG&maxResults=' + max + '&key=' + apikey + '&type=video&part=snippet';
             try {
                 const response = yield axios_1.default.get(query);
                 const nextPageToken = response.data.nextPageToken;
