@@ -27,7 +27,9 @@ class video {
                     let query = 'https://www.googleapis.com/youtube/v3/search?&regionCode=NG&maxResults=50&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet';
                     query += `q=${encodedQuery}`;
                     const response = yield axios_1.default.get(query);
-                    videoItems.push(response.data.items);
+                    const allitems = response.data.items.map((item) => {
+                        videoItems.push(response.data.item);
+                    });
                 }));
                 videoItems.map((item) => {
                     const id = (0, uuid_1.v4)();

@@ -20,7 +20,10 @@ class video {
                 let query = 'https://www.googleapis.com/youtube/v3/search?&regionCode=NG&maxResults=50&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet'
                 query += `q=${encodedQuery}`
                 const response = await axios.get(query);
-                videoItems.push(response.data.items) 
+                const allitems = response.data.items.map((item:any) => {
+                    videoItems.push(response.data.item) 
+                })
+                
             })  
 
             videoItems.map((item:any)=> {
