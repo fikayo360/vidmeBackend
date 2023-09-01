@@ -25,7 +25,7 @@ class video {
                 mock_1.default.map((item) => __awaiter(this, void 0, void 0, function* () {
                     let q = item;
                     let encodedQuery = encodeURIComponent(q);
-                    let query = `https://www.googleapis.com/youtube/v3/search?q='${encodedQuery}'&regionCode=NG&maxResults=60&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet`;
+                    let query = `https://www.googleapis.com/youtube/v3/search?q='${encodedQuery}'&regionCode=NG&maxResults=30&key=AIzaSyCW7U3xPDBQMU6mzuAjdrLlsEfaivESoiw&type=video&part=snippet`;
                     const response = yield axios_1.default.get(query);
                     response.data.items.map((item) => __awaiter(this, void 0, void 0, function* () {
                         const id = (0, uuid_1.v4)();
