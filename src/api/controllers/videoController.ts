@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import funnyGuys from '../../mock';
+import { Sequelize } from 'sequelize';
 const Video = require('../../models/Video')
 
 class video {
@@ -41,7 +42,9 @@ class video {
 
     public async getRandomVideo (req:Request,res:Response){
         try{
-            const randomVideo = await Video.findOne({random: Math.random()});
+            const randomVideo = await Video.findAll({
+                order: Sequelize.literal('RAND()')
+              });
             res.status(StatusCodes.OK).json(randomVideo)
         }catch(err:any){
             console.log(err.response.data);

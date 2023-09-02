@@ -16,6 +16,7 @@ const http_status_codes_1 = require("http-status-codes");
 const axios_1 = __importDefault(require("axios"));
 const uuid_1 = require("uuid");
 const mock_1 = __importDefault(require("../../mock"));
+const sequelize_1 = require("sequelize");
 const Video = require('../../models/Video');
 class video {
     getVideos(req, res) {
@@ -53,7 +54,9 @@ class video {
     getRandomVideo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const randomVideo = yield Video.findOne({ random: Math.random() });
+                const randomVideo = yield Video.findAll({
+                    order: sequelize_1.Sequelize.literal('RAND()')
+                });
                 res.status(http_status_codes_1.StatusCodes.OK).json(randomVideo);
             }
             catch (err) {
