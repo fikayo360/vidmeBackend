@@ -31,7 +31,7 @@ class like {
         return __awaiter(this, void 0, void 0, function* () {
             const { videoId } = req.query;
             try {
-                const comments = yield Like.findAll({
+                const likes = yield Like.findAll({
                     where: {
                         videoId: videoId
                     },
@@ -39,8 +39,7 @@ class like {
                         ['createdAt', 'DESC']
                     ]
                 });
-                res.status(http_status_codes_1.StatusCodes.OK).json(comments.dataValues);
-                console.log(comments.dataValues);
+                res.status(http_status_codes_1.StatusCodes.OK).json(likes.Like.dataValues);
             }
             catch (err) {
                 res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json('error getting likes');

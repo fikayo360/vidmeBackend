@@ -21,7 +21,7 @@ class like {
     public async getLikessByVideo(req: Request, res: Response){
         const {videoId} = req.query
         try{
-            const comments = await Like.findAll({
+            const likes = await Like.findAll({
                 where: {
                   videoId: videoId
                 },
@@ -29,8 +29,7 @@ class like {
                   ['createdAt', 'DESC']
                 ]
               });
-              res.status(StatusCodes.OK).json(comments.dataValues)
-              console.log(comments.dataValues);
+              res.status(StatusCodes.OK).json(likes.Like.dataValues)
         }catch(err:any){
             res.status(StatusCodes.BAD_REQUEST).json('error getting likes')
         }

@@ -39,7 +39,7 @@ class comment {
                         ['createdAt', 'DESC']
                     ]
                 });
-                res.status(http_status_codes_1.StatusCodes.OK).json(comments.dataValues);
+                res.status(http_status_codes_1.StatusCodes.OK).json(comments.Comment.dataValues);
                 console.log(comments);
             }
             catch (err) {
