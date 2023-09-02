@@ -30,7 +30,7 @@ class comment {
                   ['createdAt', 'DESC']
                 ]
               });
-              res.status(StatusCodes.OK).json(comments.dataValues)
+              res.status(StatusCodes.OK).json(comments)
               console.log(comments);
         }catch(err:any){
             res.status(StatusCodes.BAD_REQUEST).json('error getting comments')

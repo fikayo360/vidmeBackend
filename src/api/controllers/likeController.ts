@@ -30,7 +30,7 @@ class like {
                   ['createdAt', 'DESC']
                 ]
               });
-              res.status(StatusCodes.OK).json(likes.dataValues)
+              res.status(StatusCodes.OK).json(likes)
         }catch(err:any){
             res.status(StatusCodes.BAD_REQUEST).json('error getting likes')
         }
