@@ -42,9 +42,7 @@ class video {
 
     public async getRandomVideo (req:Request,res:Response){
         try{
-            const randomVideo = await Video.findAll({
-                order: Sequelize.literal('RAND()')
-              });
+            const randomVideo = await Video.findAll({ order: Sequelize.literal('rand()'), limit: 1 })
             res.status(StatusCodes.OK).json(randomVideo)
         }catch(err:any){
             console.log(err.response.data);
