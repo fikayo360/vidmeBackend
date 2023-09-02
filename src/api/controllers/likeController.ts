@@ -9,8 +9,17 @@ class like {
         const id = uuidv4();
         const {videoId,username} = req.body
         try{
-            const response = await Like.create({id,videoId,username})
-            res.status(StatusCodes.OK).json('created')
+            const like = await Like.findOne({
+                where: {
+                  username:username
+                }
+              });
+              if(!like){
+                const response = await Like.create({id,videoId,username})
+                res.status(StatusCodes.OK).json('created')
+              }else{
+                res.status(StatusCodes.BAD_REQUEST).json('already liked')
+              }
         }
         catch(err:any){
             console.log(err.response.data);

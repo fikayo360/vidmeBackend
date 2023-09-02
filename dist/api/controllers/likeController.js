@@ -18,8 +18,18 @@ class like {
             const id = (0, uuid_1.v4)();
             const { videoId, username } = req.body;
             try {
-                const response = yield Like.create({ id, videoId, username });
-                res.status(http_status_codes_1.StatusCodes.OK).json('created');
+                const like = yield Like.findOne({
+                    where: {
+                        username: username
+                    }
+                });
+                if (!like) {
+                    const response = yield Like.create({ id, videoId, username });
+                    res.status(http_status_codes_1.StatusCodes.OK).json('created');
+                }
+                else {
+                    res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json('already liked');
+                }
             }
             catch (err) {
                 console.log(err.response.data);
