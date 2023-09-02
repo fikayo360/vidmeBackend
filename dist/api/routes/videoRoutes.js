@@ -9,4 +9,5 @@ const index_2 = require("../controllers/index");
 const router = express_1.default.Router();
 const newVideo = new index_2.video();
 router.route("/get").get(index_1.authUser, newVideo.getVideos);
+router.route("/getRandom").get(index_1.authUser, newVideo.getRandomVideo);
 module.exports = router;
