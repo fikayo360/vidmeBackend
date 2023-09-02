@@ -30,6 +30,7 @@ class comment {
                 ]
               });
               res.status(StatusCodes.OK).json(comments.dataValues)
+              console.log(comments.dataValues);
         }catch(err:any){
             res.status(StatusCodes.BAD_REQUEST).json('error getting comments')
         }
