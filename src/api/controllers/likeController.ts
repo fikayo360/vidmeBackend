@@ -19,7 +19,7 @@ class like {
     }
 
     public async getLikessByVideo(req: Request, res: Response){
-        const {videoId} = req.body
+        const {videoId} = req.query
         try{
             const comments = Like.findAll({
                 where: {

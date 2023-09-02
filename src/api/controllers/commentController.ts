@@ -19,7 +19,7 @@ class comment {
     }
 
     public async getCommentsByVideo(req: Request, res: Response){
-        const {videoId} = req.body
+        const {videoId} = req.query
         try{
             const comments = Comment.findAll({
                 where: {

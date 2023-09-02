@@ -29,7 +29,7 @@ class like {
     }
     getLikessByVideo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { videoId } = req.body;
+            const { videoId } = req.query;
             try {
                 const comments = Like.findAll({
                     where: {
