@@ -55,7 +55,8 @@ class video {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const randomVideo = yield Video.findAll({
-                    order: sequelize_1.Sequelize.literal('RANDOM()')
+                    order: sequelize_1.Sequelize.literal('RANDOM()'),
+                    limit: 1
                 });
                 res.status(http_status_codes_1.StatusCodes.OK).json(randomVideo);
             }
