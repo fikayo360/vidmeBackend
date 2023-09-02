@@ -31,7 +31,7 @@ class comment {
         return __awaiter(this, void 0, void 0, function* () {
             const { videoId } = req.query;
             try {
-                const comments = Comment.findAll({
+                const comments = yield Comment.findAll({
                     where: {
                         videoId: videoId
                     },

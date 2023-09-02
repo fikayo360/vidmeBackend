@@ -31,7 +31,7 @@ class like {
         return __awaiter(this, void 0, void 0, function* () {
             const { videoId } = req.query;
             try {
-                const comments = Like.findAll({
+                const comments = yield Like.findAll({
                     where: {
                         videoId: videoId
                     },
