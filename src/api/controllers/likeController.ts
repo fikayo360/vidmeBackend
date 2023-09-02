@@ -22,6 +22,7 @@ class like {
         const {videoId} = req.query
         try{
             const likes = await Like.findAll({
+                raw: true,
                 where: {
                   videoId: videoId
                 },
@@ -29,7 +30,7 @@ class like {
                   ['createdAt', 'DESC']
                 ]
               });
-              res.status(StatusCodes.OK).json(likes.Like.dataValues)
+              res.status(StatusCodes.OK).json(likes.dataValues)
         }catch(err:any){
             res.status(StatusCodes.BAD_REQUEST).json('error getting likes')
         }

@@ -32,6 +32,7 @@ class comment {
             const { videoId } = req.query;
             try {
                 const comments = yield Comment.findAll({
+                    raw: true,
                     where: {
                         videoId: videoId
                     },
@@ -39,7 +40,7 @@ class comment {
                         ['createdAt', 'DESC']
                     ]
                 });
-                //   res.status(StatusCodes.OK).json(comments.Comment.dataValues)
+                res.status(http_status_codes_1.StatusCodes.OK).json(comments.dataValues);
                 console.log(comments);
             }
             catch (err) {

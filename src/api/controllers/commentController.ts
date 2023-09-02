@@ -22,6 +22,7 @@ class comment {
         const {videoId} = req.query
         try{
             const comments = await Comment.findAll({
+                raw: true,
                 where: {
                   videoId: videoId
                 },
@@ -29,7 +30,7 @@ class comment {
                   ['createdAt', 'DESC']
                 ]
               });
-            //   res.status(StatusCodes.OK).json(comments.Comment.dataValues)
+              res.status(StatusCodes.OK).json(comments.dataValues)
               console.log(comments);
         }catch(err:any){
             res.status(StatusCodes.BAD_REQUEST).json('error getting comments')
