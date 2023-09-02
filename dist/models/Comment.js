@@ -16,7 +16,11 @@ const Comment = sequelizee.define('Comment', {
             key: 'videoId'
         }
     },
-    userId: {
+    username: {
+        type: sequelize_1.DataTypes.STRING(255),
+        allowNull: false
+    },
+    userPic: {
         type: sequelize_1.DataTypes.STRING(255),
         allowNull: false
     },

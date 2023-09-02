@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import {authUser} from '../middlewares/index'
-import {user,video} from '../controllers/index'
+import {video} from '../controllers/index'
 const router:Router = express.Router()
 const newVideo = new video()
 

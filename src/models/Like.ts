@@ -14,7 +14,7 @@ const Video = require('./Video')
             key: 'videoId'
         }
     },
-    userId: {
+    username: {
         type: DataTypes.STRING(255),
         allowNull: false
     }

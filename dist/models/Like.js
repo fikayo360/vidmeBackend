@@ -16,7 +16,7 @@ const Like = sequelizee.define('Like', {
             key: 'videoId'
         }
     },
-    userId: {
+    username: {
         type: sequelize_1.DataTypes.STRING(255),
         allowNull: false
     }

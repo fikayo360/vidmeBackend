@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express} from 'express';
 const app: Express = express();
 import dotenv from 'dotenv';
 dotenv.config();
@@ -11,8 +11,13 @@ const port = process.env.PORT || 5000;
 
 const userRoutes = require('./api/routes/userRoute')
 const videoRoutes = require('./api/routes/videoRoutes')
+const likesRoutes = require('./api/routes/likeRoutes')
+const commentsRoutes = require('./api/routes/commentRoutes')
+
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/video', videoRoutes);
+app.use('/api/v1/comment', commentsRoutes);
+app.use('/api/v1/like', likesRoutes)
 
 const start =  async() => {
   try {
