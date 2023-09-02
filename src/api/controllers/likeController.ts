@@ -29,7 +29,8 @@ class like {
                   ['createdAt', 'DESC']
                 ]
               });
-              res.status(StatusCodes.OK).json(comments)
+              res.status(StatusCodes.OK).json(comments.dataValues)
+              console.log(comments.dataValues);
         }catch(err:any){
             res.status(StatusCodes.BAD_REQUEST).json('error getting likes')
         }
