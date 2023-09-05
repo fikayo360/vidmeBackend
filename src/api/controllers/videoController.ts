@@ -44,7 +44,7 @@ class video {
         try{
             const randomVideo = await Video.findAll({
                 order: Sequelize.literal('RANDOM()'),
-                limit: 1
+                limit: 15
               });
             res.status(StatusCodes.OK).json(randomVideo)
         }catch(err:any){
