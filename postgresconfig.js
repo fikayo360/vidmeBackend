@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize')
 
-const sequelizee = new Sequelize('postgres://fikayo:aTd9xPeNcSNagMLDwrRzYj1ScobAUDmS@dpg-cjmm2usdfrcc73a8hbs0-a.oregon-postgres.render.com/vidme', {
+const sequelizee = new Sequelize('postgres://fikayoadele:stZWgT2okvU9@ep-yellow-sunset-93327294.us-east-2.aws.neon.tech/neondb', {
   dialect: 'postgres',
   protocol: 'postgres',
   dialectOptions: {

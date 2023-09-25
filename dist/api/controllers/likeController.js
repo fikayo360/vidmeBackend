@@ -20,7 +20,8 @@ class like {
             try {
                 const like = yield Like.findOne({
                     where: {
-                        username: username
+                        username: username,
+                        videoId: videoId
                     }
                 });
                 if (!like) {
